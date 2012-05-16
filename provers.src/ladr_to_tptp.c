@@ -40,10 +40,10 @@ int main(int argc, char **argv)
 
   /* This is similar to the way Prover9 initializes and reads its input. */
 
-  input = std_prover_init_and_input(0, NULL,
-			    FALSE,            // clausify formulas
-			    FALSE,            // echo input to stdout
-			    IGNORE_UNKNOWN);  // for unknown flags/parms
+  input = std_prover_init_and_input(0, "",
+  			    FALSE,            // clausify formulas
+  			    FALSE,            // echo input to stdout
+  			    IGNORE_UNKNOWN);  // for unknown flags/parms
 
   /* Transform the LADR formulas to TPTP terms. */
 
