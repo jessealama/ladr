@@ -78,21 +78,21 @@ int main(int argc, char **argv)
   if (map != NULL) {
     I2list b;
     printf("\n%% The LADR formulas contain function or predicate symbols\n"
-	   "%% that are not legal TPTP symbols, and we have replaced those\n"
-	   "%% symbols with new symbols.  Here is the list of the unaccepted\n"
-	   "%% symbols and the corresponding replacements.\n%%\n");
+  	   "%% that are not legal TPTP symbols, and we have replaced those\n"
+  	   "%% symbols with new symbols.  Here is the list of the unaccepted\n"
+  	   "%% symbols and the corresponding replacements.\n%%\n");
     for (b = map; b; b = b->next)
       printf("%%   (arity %d) %8s    %s\n",
-	     sn_to_arity(b->j),
-	     sn_to_str(b->i),
-	     sn_to_str(b->j));
+  	     sn_to_arity(b->j),
+  	     sn_to_str(b->i),
+  	     sn_to_str(b->j));
     printf("\n");
     for (p = all; p; p = p->next) {
       Term t = p->v;
-      ARG(t,2) = replace_bad_tptp_syms_form(ARG(t,2), 
-				  str_ident(sn_to_str(SYMNUM(t)),"cnf"),
-				  map);
-						      
+      ARG(t,2) = replace_bad_tptp_syms_form(ARG(t,2),
+  				  str_ident(sn_to_str(SYMNUM(t)),"cnf"),
+  				  map);
+
     }
   }
 
