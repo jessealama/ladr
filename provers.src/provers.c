@@ -23,7 +23,7 @@
 
 /* Private definitions and types */
 
-static char Help_string[] = 
+static char Help_string[] =
 "\nUsage: prover9 [-h] [-x] [-p] [-t <n>] [-f <files>]\n"
 "\n"
 "  -h         Help.  Also see http://www.cs.unm.edu/~mccune/prover9/\n"
@@ -65,7 +65,7 @@ struct arg_options get_command_line_args(int argc, char **argv)
      One colon after option:  argument required.
      Two colon after options: argument optional. (GNU extension! Don't use it!)
   */
-  
+
   while ((c = getopt(argc, argv,":hapxt:f")) != EOF) {
     switch (c) {
     case 'x':
@@ -92,7 +92,7 @@ struct arg_options get_command_line_args(int argc, char **argv)
     for (i = 0; i < argc; i++)
       printf("arg: %s\n", argv[i]);
   }
-    
+
   return opts;
 }  /* get_command_line_args */
 
@@ -353,5 +353,3 @@ Prover_input std_prover_init_and_input(int argc, char **argv,
 
   return pi;
 }  /* std_prover_init_and_input */
-
-
