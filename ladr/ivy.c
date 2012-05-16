@@ -216,8 +216,24 @@ void sb_ivy_write_literals(String_buf sb, Literals lits)
 /* PUBLIC */
 void sb_ivy_write_just(String_buf sb, Ivyjust j, I3list map)
 {
+
   if (j->type == INPUT_JUST) {
     sb_append(sb, "(input)");
+  }
+  else if (j->type == CLAUSIFY_JUST) {
+    sb_append(sb, "(clausify ");
+    sb_append_id(sb, j->parent1, map);
+    sb_append(sb, ")");
+  }
+  else if (j->type == GOAL_JUST) {
+    sb_append(sb, "(goal ");
+    sb_append_id(sb, j->parent1, map);
+    sb_append(sb, ")");
+  }
+  else if (j->type == DENY_JUST) {
+    sb_append(sb, "(deny ");
+    sb_append_id(sb, j->parent1, map);
+    sb_append(sb, ")");
   }
   else if (j->type == PROPOSITIONAL_JUST) {
     sb_append(sb, "(propositional ");
@@ -860,18 +876,20 @@ Plist expand_proof_ivy(Plist proof)
 	     j->type == GOAL_JUST ||
 	     j->type == DENY_JUST) {
       new_c = copy_clause(c);
+      int parent_id = j->u.id;
       new_c->id = c->id;
       new_c->attributes = copy_attributes(c->attributes);
-      new_c->justification = ivy_just(INPUT_JUST, 0, NULL, 0, NULL, NULL);
+      new_c->justification = ivy_just(j->type, parent_id, NULL, 0, NULL, NULL);
+      // new_c->justification = ivy_just(INPUT_JUST, 0, NULL, 0, NULL, NULL);
       new_proof = plist_prepend(new_proof, new_c);
-      if (j->type == CLAUSIFY_JUST ||
-	  j->type == EXPAND_DEF_JUST ||
-	  j->type == DENY_JUST) {
-	/* Parents of these must be removed from the
-	   proof, because IVY expects ordinary clauses only. */
-	Ilist parents = get_parents(j, TRUE);
-	to_be_removed = ilist_cat(to_be_removed, parents);
-      }
+      /* if (j->type == CLAUSIFY_JUST || */
+      /* 	  j->type == EXPAND_DEF_JUST || */
+      /* 	  j->type == DENY_JUST) { */
+      /* 	/\* Parents of these must be removed from the */
+      /* 	   proof, because IVY expects ordinary clauses only. *\/ */
+      /* 	Ilist parents = get_parents(j, TRUE); */
+      /* 	to_be_removed = ilist_cat(to_be_removed, parents); */
+      /* } */
     }
     else if (j->type == NEW_SYMBOL_JUST) {
       int parent_id = j->u.id;
