@@ -140,7 +140,7 @@ void sb_ivy_write_pairs(String_buf sb, Plist pairs)
   for (p = pairs; p; p = p->next) {
     sb_ivy_write_pair(sb, p->v);
     if (p->next)
-      sb_append(sb, " ");	
+      sb_append(sb, " ");
   }
   sb_append(sb, ")");
 }  /* sb_ivy_write_pairs */
@@ -159,7 +159,7 @@ void sb_ivy_write_position(String_buf sb, Ilist position)
   for (p = position; p; p = p->next) {
     sb_append_int(sb, p->i);
     if (p->next)
-      sb_append(sb, " ");	
+      sb_append(sb, " ");
   }
   sb_append(sb, ")");
 }  /* sb_ivy_write_position */
@@ -348,7 +348,7 @@ Ilist ivy_lit_position(int n, int number_of_lits)
             2             (2)              (2 1)
             3           (2 2)            (2 2 1)
             4         (2 2 2)          (2 2 2 1)
-   */   
+   */
   int i;
   Ilist pos = NULL;
   if (n != number_of_lits)
@@ -370,7 +370,7 @@ Ilist ivy_para_position(Ilist pos1, BOOL sign, int number_of_lits)
   /* Given a LADR-style position for a term within a clause,
      build an Ivy-style position for a term within a clause.
      See ivy_lit_position.
-   */   
+   */
   Ilist pos2 = ivy_lit_position(pos1->i, number_of_lits);
 
   if (!sign)  /* Ivy position considers sign, LADR's doesn't. */
@@ -465,7 +465,7 @@ Plist paramod2_instances(Topform from, Ilist from_pos,
   }
   else
     steps = NULL;
-  
+
   free_context(subst_from);
   free_context(subst_into);
   return steps;
@@ -567,10 +567,10 @@ Plist resolve2_instances(Topform c1, int n1, Topform c2, int n2, int *next_id)
     }
 
     undo_subst(tr);
-    
+
     l1i = ith_literal(c1i->literals, n1);
     l2i = ith_literal(c2i->literals, abs(n2));
-    
+
     /* construct the resolvent */
 
     res = get_topform();
@@ -896,7 +896,7 @@ Plist expand_proof_ivy(Plist proof)
       fatal_error("expand_proof_ivy, clauses not equivalent");
     }
   }  /* process proof step c */
-  
+
   delete_clauses(work_proof);
 
   /* The following does 2 things: remove clauses and reverse proof. */
