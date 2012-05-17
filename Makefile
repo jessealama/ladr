@@ -2,10 +2,10 @@ help:
 	@echo See README.make
 
 all:
-	cd ladr         && $(MAKE) lib
-	cd mace4.src    && $(MAKE) all
-	cd provers.src  && $(MAKE) all
-	cd apps.src     && $(MAKE) all
+	make -C lib
+	make -C mace4.src
+	make -C provers.src
+	make -C apps.src
 	/bin/cp -p utilities/* bin
 	@echo ""
 	@echo "**** Now try 'make test1'. ****"
