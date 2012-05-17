@@ -6,7 +6,7 @@ all:
 	make -C mace4.src
 	make -C provers.src
 	make -C apps.src
-	/bin/cp -p utilities/* bin
+	make -C utilities
 	@echo ""
 	@echo "**** Now try 'make test1'. ****"
 	@echo ""
