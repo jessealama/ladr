@@ -36,7 +36,7 @@ test3:
 	@echo "*** All of the programs are in ./bin, and they can be copied anywhere you like. ***"
 	@echo ""
 
-clean:	
+clean:
 	cd ladr             && $(MAKE) realclean
 	cd apps.src         && $(MAKE) realclean
 	cd mace4.src        && $(MAKE) realclean
