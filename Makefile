@@ -2,17 +2,17 @@ help:
 	@echo See README.make
 
 all:
-	make -C lib
-	make -C mace4.src
-	make -C provers.src
-	make -C apps.src
-	make -C utilities
+	$(MAKE) -C lib
+	$(MAKE) -C mace4.src
+	$(MAKE) -C provers.src
+	$(MAKE) -C apps.src
+	$(MAKE) -C utilities
 	@echo ""
 	@echo "**** Now try 'make test1'. ****"
 	@echo ""
 
 ladr lib:
-	cd ladr         && $(MAKE) lib
+	$(MAKE) -C ladr lib
 
 test1:
 	bin/prover9 -f prover9.examples/x2.in | bin/prooftrans parents_only
@@ -37,10 +37,10 @@ test3:
 	@echo ""
 
 clean:
-	cd ladr             && $(MAKE) realclean
-	cd apps.src         && $(MAKE) realclean
-	cd mace4.src        && $(MAKE) realclean
-	cd provers.src      && $(MAKE) realclean
+	$(MAKE) -C ladr realclean
+	$(MAKE) -C apps.src realclean
+	$(MAKE) -C mace4.src realclean
+	$(MAKE) -C provers.src realclean
 
 realclean:
 	$(MAKE) clean
