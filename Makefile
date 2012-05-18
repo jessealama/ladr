@@ -2,7 +2,7 @@ help:
 	@echo See README.make
 
 all:
-	$(MAKE) -C lib
+	$(MAKE) -C ladr lib
 	$(MAKE) -C mace4.src
 	$(MAKE) -C provers.src
 	$(MAKE) -C apps.src
