@@ -4,7 +4,7 @@ CC = gcc
 
 # XFLAGS can be specified on the command line (see XFLAGS below)
 
-CFLAGS = $(XFLAGS) -O -Wall
+CFLAGS = $(XFLAGS) -O -Wall -pedantic
 # CFLAGS = $(XFLAGS) -O6 -Wall
 # CFLAGS = $(XFLAGS) -g  -O -Wall
 # CFLAGS = $(XFLAGS) -g -O0 -Wall
