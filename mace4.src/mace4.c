@@ -30,8 +30,8 @@
 
 void init_attrs(void)
 {
-  // This will allow these attributes to occur on clauses.
-  // Mace4 will ignore these attributes.
+  /* This will allow these attributes to occur on clauses. */
+  /* Mace4 will ignore these attributes. */
 
   int id;
   id = register_attribute("label",         STRING_ATTRIBUTE);
@@ -123,30 +123,30 @@ Plist read_mace4_input(int argc, char **argv, BOOL allow_unknown_things,
   Plist distinct_lists, distinct_forms;
   Plist wild_terms, hints;  /* we won't use these */
 
-  // Tell the top_input package what lists to accept and where to put them.
+  /* Tell the top_input package what lists to accept and where to put them. */
 
-  // Accept hints, but they will not be used.
+  /* Accept hints, but they will not be used. */
 
   accept_list("hints", FORMULAS, TRUE, &hints);
 
-  // Accept goals; these are negated individually (each must be falsified)
+  /* Accept goals; these are negated individually (each must be falsified) */
 
   accept_list("goals", FORMULAS, FALSE, &goals);
 
-  // Accept lists of distinct items
+  /* Accept lists of distinct items */
 
   accept_list("distinct", TERMS, FALSE, &distinct_lists);
 
-  // Accept any other clauses and formulas.  Each must be true.
+  /* Accept any other clauses and formulas.  Each must be true. */
 
   accept_list("",    FORMULAS, FALSE, &wild_formulas);
 
-  // Accept any terms.  These will not be used.
+  /* Accept any terms.  These will not be used. */
 
   accept_list("",      TERMS,    FALSE, &wild_terms);
 
-  // Read commands such as set, clear, op, lex.
-  // Read lists, filling in variables given to the accept_list calls.
+  /* Read commands such as set, clear, op, lex. */
+  /* Read lists, filling in variables given to the accept_list calls. */
 
   print_separator(stdout, "INPUT", TRUE);
 
@@ -174,7 +174,7 @@ Plist read_mace4_input(int argc, char **argv, BOOL allow_unknown_things,
   wild_formulas = embed_formulas_in_topforms(wild_formulas, TRUE);
   goals = embed_formulas_in_topforms(goals, FALSE);
 
-  // Clausify 
+  /* Clausify */
 
   print_separator(stdout, "PROCESS NON-CLAUSAL FORMULAS", TRUE);
   printf("\n%% Formulas that are not ordinary clauses:\n");
@@ -206,7 +206,7 @@ int main(int argc, char **argv)
 
   init_standard_ladr();
   init_mace_options(&opt);  /* We must do this before calling usage_message. */
-  init_attrs();  
+  init_attrs();
 
   if (member_args(argc, argv, "help") ||
       member_args(argc, argv, "-help")) {
@@ -222,7 +222,7 @@ int main(int argc, char **argv)
   signal(SIGSEGV, mace4_sig_handler);
 
   clauses = read_mace4_input(argc, argv, prover_compatability_mode, &opt);
-			     
+
   print_separator(stdout, "CLAUSES FOR SEARCH", TRUE);
   fwrite_clause_list(stdout, clauses, "mace4_clauses", CL_FORM_BARE);
   print_separator(stdout, "end of clauses for search", TRUE);

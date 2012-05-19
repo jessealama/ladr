@@ -101,7 +101,7 @@ for negative operands:
 
  14   5    2       4        4
 -14   5   -2      -4        1
- 14  -5   -2       4       -1 
+ 14  -5   -2       4       -1
 -14  -5    2      -4       -4
 
 */
@@ -487,7 +487,7 @@ Term distrib(Term t)
     int i;
     for (i = 0; i < ARITY(t); i++)
       ARG(t,i) = distrib(ARG(t,i));
-    
+
     if (SYMNUM(t) != Prod_sn)
       return t;
     else {
@@ -588,14 +588,14 @@ BOOL arith_rel_quasi_eval(Term atom)
     BOOL val;
 
     atom2 = distrib(atom2);
-    // printf("after distrib:  "); fwrite_term_nl(stdout, atom2);
+    /* printf("after distrib:  "); fwrite_term_nl(stdout, atom2); */
     ac_canonical2(atom2, -1, term_compare_vcp);
-    // printf("after AC canon: "); fwrite_term_nl(stdout, atom2);
+    /* printf("after AC canon: "); fwrite_term_nl(stdout, atom2); */
 
     ARG(atom2,0) = qsimp(ARG(atom2,0));
     ARG(atom2,1) = qsimp(ARG(atom2,1));
 
-    // printf("after qsimp: "); fwrite_term_nl(stdout, atom2);
+    /* printf("after qsimp: "); fwrite_term_nl(stdout, atom2); */
 
     if (term_ident(ARG(atom2,0), ARG(atom2,1)))
       val = negated ? FALSE : TRUE;
@@ -650,4 +650,3 @@ BOOL check_with_arithmetic(Plist ground_clauses)
   }  /* clauses loop */
   return TRUE;
 }  /* check_with_arithmetic */
-
