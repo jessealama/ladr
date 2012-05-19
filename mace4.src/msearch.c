@@ -19,7 +19,7 @@
 #include "msearch.h"
 #include "../ladr/banner.h"
 
-// #define DEBUG
+/* #define DEBUG */
 
 /*****************************************************************************/
 /* Variables -- most are used (extern) by other source files */
@@ -96,7 +96,7 @@ enum {
 
    (1) We use upward pointers from terms to superterms
    and from atoms to clauses.
- 
+
    (2) We need to mark atoms with a termflag, so that we know
    when to stop when following the upward pointers.  Also,
    a termflag is used to indicate that an atom is negated.
@@ -143,7 +143,7 @@ void init_mace_options(Mace_options opt)
   opt->increment         = init_parm("increment",        1,       1, INT_MAX);
   opt->max_megs          = init_parm("max_megs",       500,      -1, INT_MAX);
   opt->report_stderr     = init_parm("report_stderr",   -1,      -1, INT_MAX);
-         
+
   opt->print_models           = init_flag("print_models",           TRUE);
   opt->print_models_tabular   = init_flag("print_models_tabular",   FALSE);
   opt->lnh                    = init_flag("lnh",                    TRUE);
@@ -241,12 +241,12 @@ void mace4_exit(int exit_code)
   else
     printf("\nExiting with %d model%s.\n",
 	    Total_models, Total_models == 1 ? "" : "s");
-  
+
   fprintf(stderr, "\n------ process %d exit (%s) ------\n",
 	  my_process_id(), exit_string(exit_code));
   printf("\nProcess %d exit (%s) %s",
 	  my_process_id(), exit_string(exit_code), get_date());
-  
+
   printf("The process finished %s", get_date());
   exit(exit_code);
 }  /* mace4_exit */
@@ -272,7 +272,7 @@ void initialize_for_search(Plist clauses)
   /* In ground clauses, VARIABLEs represent domain elements,
      so from here on, print variables as integers. */
 
-  // set_variable_style(INTEGER_STYLE);
+  /* set_variable_style(INTEGER_STYLE); */
 
   /* These flags are for ground clause (mclause) literals. */
 
@@ -359,7 +359,7 @@ void init_for_domain_size(void)
   Domain = malloc(Domain_size * sizeof(void *));
   for (i = 0; i < Domain_size; i++)
     Domain[i] = get_variable_term(i);
-  
+
   /* Set up the table of cells. */
 
   Number_of_cells = nextbase;
@@ -382,7 +382,7 @@ void init_for_domain_size(void)
   }
 
   order_cells(flag(Opt->verbose));
-  
+
   if (flag(Opt->negprop))
     init_negprop_index();
 } /* init_for_domain_size */
@@ -574,7 +574,7 @@ int check_time_memory(void)
 	fflush(stderr);
 	while (seconds >= Next_report)
 	  Next_report += report;
-      }      
+      }
     }
     return SEARCH_GO_NO_MODELS;
   }
@@ -678,7 +678,7 @@ int search(int max_constrained, int depth)
 	p_model(FALSE);
 	/* p_possible_values(); */
       }
-	
+
       if (Cells[id].symbol->type == RELATION)
 	last = 1;
       else if (flag(Opt->lnh))
@@ -695,7 +695,7 @@ int search(int max_constrained, int depth)
 	  fwrite_term(stdout, Cells[id].eterm);
 	  printf("=%d (%d) depth=%d\n", i, last, depth);
 	}
-	
+
 	stk = assign_and_propagate(id, Domain[i]);
 
 	if (stk != NULL) {
@@ -747,7 +747,7 @@ int mace4n(Plist clauses, int order)
 
   special_assignments();  /* assignments determined by options */
 
-  /* Instantiate clauses over the domain.  This also 
+  /* Instantiate clauses over the domain.  This also
      (1) makes any domain element constants into real domain elements,
      (2) applies OR, NOT, and EQ simplification, and
      (3) does unit propagation (which pushes events onto initial_state->stack).
@@ -850,7 +850,7 @@ static
 int next_domain_size(n)
 {
   int top = (parm(Opt->end_size) == -1 ? INT_MAX : parm(Opt->end_size));
-      
+
   if (n == 0)
     n = parm(Opt->start_size);  /* first call */
   else
