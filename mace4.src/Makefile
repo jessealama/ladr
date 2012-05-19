@@ -44,4 +44,5 @@ realclean:
 	/bin/rm -f *.o *.a mace4
 
 install:
-	/bin/mv mace4 ../bin
+	mkdir -p ../bin
+	cp -p mace4 ../bin
