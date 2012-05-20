@@ -44,7 +44,7 @@ clean:
 
 realclean:
 	$(MAKE) clean
-	/bin/rm -f bin/*
+	/bin/rm -R -f bin
 
 
 # The following cleans up, then makes a .tar.gz file of the current
