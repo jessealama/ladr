@@ -53,6 +53,7 @@ realclean:
 DIR = $(shell basename $(PWD))
 
 dist:
+	which gzip
 	$(MAKE) realclean
 	cd .. && tar cvf $(DIR).tar $(DIR)
 	gzip -f ../$(DIR).tar
